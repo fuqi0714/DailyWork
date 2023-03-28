@@ -1,0 +1,15 @@
+F:\Code\C#\Overflow\bin\Debug\net6.0\Overflow.exe
+F:\Code\C#\Overflow\bin\Debug\net6.0\Overflow.deps.json
+F:\Code\C#\Overflow\bin\Debug\net6.0\Overflow.runtimeconfig.json
+F:\Code\C#\Overflow\bin\Debug\net6.0\Overflow.dll
+F:\Code\C#\Overflow\bin\Debug\net6.0\Overflow.pdb
+F:\Code\C#\Overflow\obj\Debug\net6.0\Overflow.csproj.AssemblyReference.cache
+F:\Code\C#\Overflow\obj\Debug\net6.0\Overflow.GeneratedMSBuildEditorConfig.editorconfig
+F:\Code\C#\Overflow\obj\Debug\net6.0\Overflow.AssemblyInfoInputs.cache
+F:\Code\C#\Overflow\obj\Debug\net6.0\Overflow.AssemblyInfo.cs
+F:\Code\C#\Overflow\obj\Debug\net6.0\Overflow.csproj.CoreCompileInputs.cache
+F:\Code\C#\Overflow\obj\Debug\net6.0\Overflow.dll
+F:\Code\C#\Overflow\obj\Debug\net6.0\refint\Overflow.dll
+F:\Code\C#\Overflow\obj\Debug\net6.0\Overflow.pdb
+F:\Code\C#\Overflow\obj\Debug\net6.0\Overflow.genruntimeconfig.cache
+F:\Code\C#\Overflow\obj\Debug\net6.0\ref\Overflow.dll
