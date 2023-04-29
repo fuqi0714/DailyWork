@@ -3,6 +3,7 @@ import os
 import random
 import time as t
 import module.GetItemFromCSV as GIFC
+import module.VisualizationModule as VLM
 import pandas as pd
 
 # 方法文档https://blog.csdn.net/houyanhua1/article/details/87809185
@@ -10,12 +11,26 @@ import pandas as pd
 parser = argparse.ArgumentParser(description='Process some integers.')
 parser.add_argument('--file', type=str, required=True)
 parser.add_argument('--nums', type=int, default=1)
-parser.add_argument('--RandomSelect', type=bool, default=True)
-parser.add_argument('--Visualization', type=bool, default=False)
+parser.add_argument('--RandomSelect', action='store_true')
+parser.add_argument('--Visualization', action='store_true')
 args = parser.parse_args()
 
 
 class RandomID:
+
+    '''
+        def RandomList(self,pandas_table):
+            RandomListValue=[]
+            for i in range ( args.nums):
+                n = self.RandomNum(len(pandas_table))
+                for j in RandomListValue:
+                    if j!=n:
+                        RandomListValue.append(n)
+                    else:
+                        return
+
+            return RandomListValue
+    '''
 
     def ShowResult(self):
         testDict = {'ID': '', 'Name': '', 'Times': '', 'PreviousDate': ''}
@@ -67,5 +82,8 @@ if __name__ == '__main__':
         RID = RandomID()
         RID.ShowResult()
     elif args.Visualization:
-        print()
+        VLD=VLM.VisualizationDate()
+        VLD.GetDate(args.file)
+    else:
+        print("Select one of parser args")
 
