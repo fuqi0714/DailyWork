@@ -36,6 +36,7 @@ class RandomID:
         testDict = {'ID': '', 'Name': '', 'Times': '', 'PreviousDate': ''}
         pandas_table = GIFC.GetItemFromCSV(args.file)
         n = self.RandomNum(len(pandas_table))
+
         testDict['ID'] = pandas_table[n:n + 1][["ID"]].to_string(index=False, header=0)
         testDict['Name'] = pandas_table[n:n + 1][["Name"]].to_string(index=False, header=0)
         times = pandas_table[n:n + 1][["Times"]] + 1
@@ -69,8 +70,14 @@ class RandomID:
         return time
 
     def RandomNum(self, x):
-        n = random.randint(0, x - 1)
-        return n
+        time = int(t.strftime("%S", t.localtime()))+ random.randint(0, x+1)
+        if time < x:
+            return time
+        else:
+            total_num = 7 * x
+            n = random.randint(0, total_num - 1)
+            result = n % x
+            return result
 
     def GenerateDictObj(self):
         temptDict = {'': ''}
@@ -79,9 +86,11 @@ class RandomID:
 
 if __name__ == '__main__':
     if args.RandomSelect:
+        print(" RandomSelect Becall")
         RID = RandomID()
         RID.ShowResult()
     elif args.Visualization:
+        print(" Visualization Becall")
         VLD=VLM.VisualizationDate()
         VLD.GetDate(args.file)
     else:

@@ -1,4 +1,5 @@
 import pandas as pd
+import numpy as np
 import matplotlib.pyplot as plt
 import module.GetItemFromCSV as GIFC
 
@@ -15,17 +16,19 @@ class VisualizationDate:
         self.NamesList = pandas_table["Name"].tolist()
         self.VisualizationResult()
 
-
+    def GetMaxValue(self,list):
+        return max(list)+1
 
 
     def VisualizationResult(self):
-        plt.figure(dpi=80, figsize=(22, 6))
+        plt.figure(dpi=80, figsize=(22, 9))
         df = pd.DataFrame(self.NumsList,
                           index=self.NamesList)
-        plt.xlabel('Name')
-        plt.ylabel('Times')
-        plt.xticks(label='Name', fontsize=12, color='green', rotation=35)
-        plt.yticks(label='Times', fontsize=14)
+        plt.xlabel('Name', fontsize=24)
+        plt.ylabel('Times', fontsize=24)
+        plt.ylim(0, self.GetMaxValue(self.NumsList))
+        plt.xticks(label='Name', fontsize=14, color='green', rotation=35)
+        plt.yticks(np.arange(0, self.GetMaxValue(self.NumsList), step=1),label='Times', fontsize=24)
 
         plt.plot(df, marker='o', markevery=1)
         plt.show()
