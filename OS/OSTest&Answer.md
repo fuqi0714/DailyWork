@@ -14,8 +14,8 @@ A.具备并发和并行的特点&ensp;     B.需要实现对共享资源的保�
 4、计算机中存在两个程序，程序1依次使用CPU10秒、设备A5秒、CPU5秒、设备B10秒、CPU10秒；程序2依次使用设备A10秒、CPU10秒、设备B5秒、CPU5秒、设备B10秒。在单道程序环境下先执行程序1再执行程序2，CPU的利用率是多少；在多道程序环境下，CPU利用率是多少
 <br></br><br></br><br></br><br></br><br></br><br></br>
 
-[](https://github.com/fuqi0714/DailyWork/blob/main/OS/res/004-1.png)
-[](https://github.com/fuqi0714/DailyWork/blob/main/OS/res/004-2.png)
+![](https://github.com/fuqi0714/DailyWork/blob/main/OS/res/004-1.png)
+![](https://github.com/fuqi0714/DailyWork/blob/main/OS/res/004-2.png)
 
 5、一个进程释放一台硬件设备，必然改变___**A**___状态，可能改变____**C**____状态
 
@@ -48,8 +48,8 @@ C.同一个进程中的各个线程分散在不同的内存空间中&ensp;
 | P<sub>4</sub> | 5.5 | 4 |
 | P<sub>5</sub> | 7 | 2 |
 
-[](https://github.com/fuqi0714/DailyWork/blob/main/OS/res/010-1.png)
-[](https://github.com/fuqi0714/DailyWork/blob/main/OS/res/010-2.png)
+![](https://github.com/fuqi0714/DailyWork/blob/main/OS/res/010-1.png)
+![](https://github.com/fuqi0714/DailyWork/blob/main/OS/res/010-2.png)
 
 
 
@@ -59,7 +59,7 @@ C.同一个进程中的各个线程分散在不同的内存空间中&ensp;
 P<sub>1</sub> ：计算时间60ms，IO操作时间80ms，计算时间20ms  
 P<sub>2</sub> ：计算时间120ms，IO操作时间40ms，计算时间40ms  
 
-[](https://github.com/fuqi0714/DailyWork/blob/main/OS/res/011-1.png)
+![](https://github.com/fuqi0714/DailyWork/blob/main/OS/res/011-1.png)
 
 12、更适合分时系统采用的调度算法为____**C**____
 
@@ -94,7 +94,7 @@ A 1,4,0&ensp;     B 0,6,2&ensp;      C 1,1,1&ensp;      D 0,4,7&ensp;
 | P<sub>5</sub> | 0 0 1 | 0 6 5 | |
 
 
-[](https://github.com/fuqi0714/DailyWork/blob/main/OS/res/019.png)
+![](https://github.com/fuqi0714/DailyWork/blob/main/OS/res/019.png)
 
 
 20、进程信息以及需求信息如表，A、B两类资源数量各为6个。根据安全性检测结果并写出安全序列
