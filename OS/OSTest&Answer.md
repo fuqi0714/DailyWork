@@ -61,7 +61,7 @@ C.同一个进程中的各个线程分散在不同的内存空间中&ensp;
 P<sub>1</sub> ：计算时间60ms，IO操作时间80ms，计算时间20ms  
 P<sub>2</sub> ：计算时间120ms，IO操作时间40ms，计算时间40ms  
 
-![](https://github.com/fuqi0714/DailyWork/blob/main/OS/res/011.png)
+![](https://github.com/fuqi0714/DailyWork/blob/main/OS/res/011.jpg)
 
 12、更适合分时系统采用的调度算法为____**C**____
 
