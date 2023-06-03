@@ -182,5 +182,5 @@ LRU替换标准：当需要访问的页面不在主存物理块内，比较所�
 
 ![](https://github.com/fuqi0714/DailyWork/blob/main/OS/res/029-1.png)
 附
-![](https://github.com/fuqi0714/DailyWork/blob/main/OS/res/029-2.png)
-![](https://github.com/fuqi0714/DailyWork/blob/main/OS/res/029-3.png)
+![](https://github.com/fuqi0714/DailyWork/blob/main/OS/res/029-2-1.png)
+![](https://github.com/fuqi0714/DailyWork/blob/main/OS/res/029-2-2.png)
