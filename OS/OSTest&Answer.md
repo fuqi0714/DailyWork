@@ -179,3 +179,8 @@ LRU替换标准：当需要访问的页面不在主存物理块内，比较所�
 
 
 29、若磁头当前位于磁道号105道，正在向磁道号递增的方向移动。当前存在磁道访问请求序列35、45、12、68、110、180、170、195，计算采用SCAN调度算法得到的磁道访问顺序和总移动磁道数
+
+![](https://github.com/fuqi0714/DailyWork/blob/main/OS/res/029-1.png)
+附
+![](https://github.com/fuqi0714/DailyWork/blob/main/OS/res/029-2.png)
+![](https://github.com/fuqi0714/DailyWork/blob/main/OS/res/029-3.png)
