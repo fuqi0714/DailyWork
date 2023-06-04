@@ -62,9 +62,14 @@
 例:设有两个浮点数x=2<sup>Ex</sup>   * S<sub>x</sub>，y=2<sup>Ey</sup> * S<sub>y</sub>，Ex=(-10)<sub>2</sub>，Sx=(+0.1001)<sub>2</sub>，Ey=(+10)<sub>2</sub>，Sy=(+0.1011)<sub>2</sub>。若尾数4位，数符1位，阶码2位，阶符1位，求x+y并写出运算步骤及结果
 
 流程
-- 对阶
+- 对阶、舍入
 - 尾数计算
-- 检查规格化
+- 检查规格化、舍入
+
+
+![](https://github.com/fuqi0714/DailyWork/blob/main/CO/res/Binary-1.png)
+
+
 ### 未统一表示形式的浮点数格式
 
 二进制形式：N=2<sup>E</sup>×M，其中阶码和尾数选用何类二进制码表示以题目为准
@@ -126,12 +131,17 @@
 例1：机器字长为16位的计算机存储容量为2MB，若按字节编址，存储单元寻址范围为多少
 - 若按字长编址，存储单元寻址范围为多少
 
+字节编址：8bit为一个存储单元(即1B)，2MB=2<sup>21</sup>B。存储单元总数为2<sup>21</sup>B /1B=2<sup>21</sup>，因此寻址范围为0~2<sup>21</sup>-1
 
+字长编址：存储单元内的位数等于机器字长为16bit，存储单元总数为2<sup>21</sup>B /2B=2<sup>20</sup>，因此寻址范围为0~2<sup>20</sup>-1
 
 例2：机器字长为16位的计算机的主存结构采用半导体存贮器，地址码长度20位，按字节编址，若使用8K×8位的RAM芯片组成该计算机所允许的最大主存空间，并使用模块条的形式，则
 - 若每个模块条为256K×8位，共需几个模块条？
 - 每个模块内共有多少片RAM芯片？
 - 主存共需多少RAM芯片？
+
+![](https://github.com/fuqi0714/DailyWork/blob/main/CO/res/Memory-2.png)
+
 ### 模块设计方式
 顺序方式
 
@@ -159,6 +169,22 @@ P128-P130
 通用寄存器Register
 
 程序状态字寄存器Program Status Word Register
+
+## CPU的内部功能
+![](https://github.com/fuqi0714/DailyWork/blob/main/CO/res/CPU-001.png)
+![](https://github.com/fuqi0714/DailyWork/blob/main/CO/res/CPU-002.png)
+![](https://github.com/fuqi0714/DailyWork/blob/main/CO/res/CPU-003.png)
+![](https://github.com/fuqi0714/DailyWork/blob/main/CO/res/CPU-004.png)
+![](https://github.com/fuqi0714/DailyWork/blob/main/CO/res/CPU-005.png)
+
+## 指令通路
+![](https://github.com/fuqi0714/DailyWork/blob/main/CO/res/CPU-006.png)
+![](https://github.com/fuqi0714/DailyWork/blob/main/CO/res/CPU-007.png)
+![](https://github.com/fuqi0714/DailyWork/blob/main/CO/res/CPU-008.png)
+![](https://github.com/fuqi0714/DailyWork/blob/main/CO/res/CPU-009.png)
+
+
+
 
 # 总线
 ## 总线内部结构
