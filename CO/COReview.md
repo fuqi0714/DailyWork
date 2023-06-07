@@ -128,6 +128,9 @@
 ![](https://github.com/fuqi0714/DailyWork/blob/main/CO/res/Memory-2.png)
 
 ### 模块设计方式
+
+P88
+
 顺序方式
 
 交叉方式
@@ -192,4 +195,5 @@ P195-P196
 ## 总线仲裁方式
 
 P198-P200
+
 集中式仲裁、分布式仲裁的定义
