@@ -10,6 +10,7 @@ import pandas as pd
 # 进度条文档https://blog.csdn.net/weixin_46089319/article/details/107406269
 parser = argparse.ArgumentParser(description='Process some integers.')
 parser.add_argument('--file', type=str, required=True)
+parser.add_argument('--target_path', type=str)
 parser.add_argument('--nums', type=int, default=1)
 parser.add_argument('--RandomSelect', action='store_true')
 parser.add_argument('--Visualization', action='store_true')
@@ -52,7 +53,17 @@ class RandomID:
         pandas_table.loc[number, 'PreviousDate'] = currentDate
         pandas_table.to_csv(args.file, header=None, index=None)
         file = os.path.split(args.file)[1]
-        pandas_table.to_csv('src/' + file, header=None, index=None)
+        print("file+ ============"+file)
+        front_path=os.path.join(os.getcwd(),'src'+os.path.sep)
+        print("front_path+ ============"+front_path)
+        dis_path=os.path.join(front_path, file)
+        print("dis_path+ ============"+dis_path)
+        if len(args.target_path)!=0:
+            print("change path")
+            # args.target_path="E:\WeeklyLesson\week004\Pros\Myproject\Assets\OutsideExe\target"
+            dis_path=os.path.join(args.target_path, file)
+            print("change path over")
+        pandas_table.to_csv(dis_path, header=None, index=None)
         print("Write back over and update")
         '''
         mix path
