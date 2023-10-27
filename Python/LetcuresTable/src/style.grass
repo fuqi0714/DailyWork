@@ -1,0 +1,32 @@
+node {
+  color: #A5ABB6;
+  border-color: #9AA1AC;
+  border-width: 8px;
+  text-color-internal: #FFFFFF;
+  font-size: 18px;
+}
+relationship {
+  color: #A5ABB6;
+  shaft-width: 1px;
+  font-size: 18px;
+  padding: 3px;
+  text-color-external: #000000;
+  text-color-internal: #FFFFFF;
+  caption: "<type>";
+}
+node.Owner {
+  diameter: 70px;
+  color: #C990C0;
+  border-color: #b261a5;
+  text-color-internal: #FFFFFF;
+  defaultCaption: "<id>";
+  caption: "{name}";
+}
+node.Lecture {
+  diameter: 140px;
+  color: #F79767;
+  border-color: #f36924;
+  text-color-internal: #FFFFFF;
+  defaultCaption: "<id>";
+  caption: "{name}";
+}
