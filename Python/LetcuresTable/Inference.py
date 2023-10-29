@@ -61,6 +61,7 @@ class GraphDatabase:
         r=Relationship(start,'Get',end)
         print(r)
         graph.merge(start, "Owner", "name")
+        graph.merge(end, "Lecture", "name")
         graph.create(r)
         self.relastionships.append(r)
         self.GetAllLectures(start)
