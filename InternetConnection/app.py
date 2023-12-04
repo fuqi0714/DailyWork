@@ -1,6 +1,6 @@
 # coding:utf-8
 
-from flask import Flask,render_template,request,redirect,url_for
+from flask import Flask,render_template,request,redirect,url_for,send_from_directory
 from werkzeug.utils import secure_filename
 import os
 
@@ -18,9 +18,9 @@ def start():
 @app.route('/download', methods=['POST', 'GET'])
 def download():
     if request.method == 'GET':
-        
-        return send_from_directory(download_path) 
-    return send_from_directory(download_path) 
+        print("start→download")
+        return redirect(host='172.30.5.24',port=8869) 
+    return send_from_directory(download_path,"/") 
 
 @app.route('/upload', methods=['POST', 'GET'])
 def upload():
