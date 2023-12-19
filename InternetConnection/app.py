@@ -4,7 +4,7 @@ from flask import Flask,render_template,request,redirect,url_for,send_from_direc
 from werkzeug.utils import secure_filename
 import os
 
-download_path=r'D:\fq\2023-2024-1\05A21061\Projects'
+download_path=r'D:\Downloads'
 
 app = Flask(__name__)
 
@@ -18,9 +18,10 @@ def start():
 @app.route('/download', methods=['POST', 'GET'])
 def download():
     if request.method == 'GET':
+        entries = os.listdir(download_path)
         print("start→download")
-        return redirect(host='172.30.5.24',port=8869) 
-    return send_from_directory(download_path,"/") 
+        return render_template('download.html', entries=entries)
+
 
 @app.route('/upload', methods=['POST', 'GET'])
 def upload():
@@ -40,4 +41,4 @@ def success():
 
 
 if __name__ == '__main__':
-    app.run(debug=True,host='172.30.5.24',port=5000)
+    app.run(debug=True,host='172.30.5.40',port=5000)

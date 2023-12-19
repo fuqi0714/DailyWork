@@ -1,0 +1,17 @@
+<html>
+<head>
+<meta charset="UTF-8">
+<title>文件下载</title>
+</head>
+
+<body>
+
+
+<h2>下载文件</h2>
+<ol>
+{% for entry in entries %}
+    <li><a href='/files/{{entry}}'>{{entry}}</a>
+{% endfor %}
+</ol>
+</body>
+</html>
