@@ -14,7 +14,7 @@ import pandas as pd
 parser = argparse.ArgumentParser(description='Process some integers.')
 parser.add_argument('--file', type=str, required=True)
 parser.add_argument('--target_path', type=str,default="")
-parser.add_argument('--nums', type=int, default=1)
+parser.add_argument('--nums', type=int, default=3)
 parser.add_argument('--RandomSelect', action='store_true')
 parser.add_argument('--Visualization', action='store_true')
 args = parser.parse_args()
@@ -38,6 +38,16 @@ class RandomID:
     def time_format(self):
         date_detail="{}".format(datetime.now())
         return f'{date_detail}|>'
+
+    def Recursion(self,nums):
+        self.ShowResult()
+        if nums==1:
+            ic()
+            return
+        else:
+            ic()
+            next=nums - 1
+            self.Recursion(next)
 
 
     def ShowResult(self):
@@ -110,7 +120,7 @@ if __name__ == '__main__':
     if args.RandomSelect:
         ic(" RandomSelect Becall")
         RID = RandomID()
-        RID.ShowResult()
+        RID.Recursion(args.nums)
     elif args.Visualization:
         ic(" Visualization Becall")
         VLD=VLM.VisualizationDate()
