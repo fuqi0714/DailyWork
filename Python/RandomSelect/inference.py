@@ -2,15 +2,18 @@ import argparse
 import os
 import random
 import time as t
+
+from icecream import ic
+from datetime import datetime
+
 import module.GetItemFromCSV as GIFC
 import module.VisualizationModule as VLM
 import pandas as pd
 
-# 方法文档https://blog.csdn.net/houyanhua1/article/details/87809185
-# 进度条文档https://blog.csdn.net/weixin_46089319/article/details/107406269
+
 parser = argparse.ArgumentParser(description='Process some integers.')
 parser.add_argument('--file', type=str, required=True)
-parser.add_argument('--target_path', type=str)
+parser.add_argument('--target_path', type=str,default="")
 parser.add_argument('--nums', type=int, default=1)
 parser.add_argument('--RandomSelect', action='store_true')
 parser.add_argument('--Visualization', action='store_true')
@@ -32,10 +35,16 @@ class RandomID:
 
             return RandomListValue
     '''
+    def time_format(self):
+        date_detail="{}".format(datetime.now())
+        return f'{date_detail}|>'
+
 
     def ShowResult(self):
+        ic("Starting RandomSelect")
         testDict = {'ID': '', 'Name': '', 'Times': '', 'PreviousDate': ''}
         pandas_table = GIFC.GetItemFromCSV(args.file)
+        ic("Converting CSV file complete")
         n = self.RandomNum(len(pandas_table))
 
         testDict['ID'] = pandas_table[n:n + 1][["ID"]].to_string(index=False, header=0)
@@ -44,32 +53,34 @@ class RandomID:
         testDict['Times'] = times.to_string(index=False, header=0)
 
         testDict['PreviousDate'] = pandas_table[n:n + 1][["PreviousDate"]].to_string(index=False, header=0)
+        ic("Generating Detail of Result")
         currentDate=self.GetCurrentDate()
-        print(testDict)
+        ic(testDict)
         self.WriteBack(n, pandas_table, times,currentDate)
 
     def WriteBack(self, number, pandas_table, times,currentDate):
+        ic("Starting Rewrite")
         pandas_table.loc[number, 'Times'] = times.to_string(index=False, header=0)
         pandas_table.loc[number, 'PreviousDate'] = currentDate
         pandas_table.to_csv(args.file, header=None, index=None)
         file = os.path.split(args.file)[1]
-        print("file+ ============"+file)
-        front_path=os.path.join(os.getcwd(),'src'+os.path.sep)
-        print("front_path+ ============"+front_path)
-        dis_path=os.path.join(front_path, file)
-        print("dis_path+ ============"+dis_path)
-        if len(args.target_path)!=0:
-            print("change path")
+        if len(args.target_path) != 0:
+            ic("file+ ============" + file)
+            front_path = os.path.join(os.getcwd(), 'src' + os.path.sep)
+            ic("front_path+ ============" + front_path)
+            dis_path = os.path.join(front_path, file)
+            ic("dis_path+ ============" + dis_path)
+            ic("change path")
             # args.target_path="E:\WeeklyLesson\week004\Pros\Myproject\Assets\OutsideExe\target"
-            dis_path=os.path.join(args.target_path, file)
-            print("change path over")
-        pandas_table.to_csv(dis_path, header=None, index=None)
-        print("Write back over and update")
+            dis_path = os.path.join(args.target_path, file)
+            ic("change path over")
+        pandas_table.to_csv('src/' + file, header=None, index=None)
+        ic("Writing back over and updating")
         '''
         mix path
         if os.path.exists(file_path):
             pandas_table.to_csv(args.file,header=None,index=None)
-            #print(os.path.join(file_path,args.file))
+            #ic(os.path.join(file_path,args.file))
             
         '''
 
@@ -97,13 +108,13 @@ class RandomID:
 
 if __name__ == '__main__':
     if args.RandomSelect:
-        print(" RandomSelect Becall")
+        ic(" RandomSelect Becall")
         RID = RandomID()
         RID.ShowResult()
     elif args.Visualization:
-        print(" Visualization Becall")
+        ic(" Visualization Becall")
         VLD=VLM.VisualizationDate()
         VLD.GetDate(args.file)
     else:
-        print("Select one of parser args")
+        ic("Select one of parser args")
 
