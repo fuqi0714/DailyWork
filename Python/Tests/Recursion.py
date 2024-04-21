@@ -1,7 +1,7 @@
 import argparse
 
 parser = argparse.ArgumentParser(description='Process some integers.')
-parser.add_argument('--times', type=str,required=True)
+parser.add_argument('--times', type=int,required=True)
 args = parser.parse_args()
 
 '''

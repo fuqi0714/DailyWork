@@ -17,16 +17,16 @@ class Process:
 class FCFS:
     def FCFS_Scheduling(self,processes):
         print("Initial number of pros is {}".format(len(processes)))
-        StartTime=time.time()
         CompletionTime = 0
         WaitingTime = 0
-    
+        CyclingTime=0
+
         for process in processes:
-            # 计算每个进程的完成时间和等待时间
+            # 计算每个进程的完成时间和周转时间
             CompletionTime = max(CompletionTime, process.ArrivalTime) + process.BurstTime
-            
-            WaitingTime += max(0, CompletionTime - process.ArrivalTime - process.BurstTime)
-            print("Pid is {}  CompletionTime is {} ,WaitingTime is {}".format(process.pid,CompletionTime,WaitingTime))
+            CyclingTime=CompletionTime- process.ArrivalTime
+            # WaitingTime += max(0, CompletionTime - process.ArrivalTime - process.BurstTime)
+            print("Pid is {}  CompletionTime is {} ,CyclingTime is {}".format(process.pid,CompletionTime,CyclingTime))
             
         AvgWaitingTime = WaitingTime / len(processes)
 
@@ -43,7 +43,7 @@ class FCFS:
             p=Process(i+1,ArrivalTime,BurstTime)
             processes.append(p)
 
-        AvgWaitingTime = F.FCFS_Scheduling(processes)
+        F.FCFS_Scheduling(processes)
         print("Generate process list over ")
 
 
@@ -67,12 +67,6 @@ class FCFS:
             self.InputWithRecursion(n-1,index+1)
 
 
-
-       
-        
-
-
-
 if __name__ == '__main__':
 
     F=FCFS()
@@ -90,7 +84,7 @@ if __name__ == '__main__':
 
     elif args.run==2:
         ProNum=input("Input Process num : ")
-        F.InputFormOutside(int(ProNum))
+        F.InputFromOutside(int(ProNum))
 
     else:
         ProNum=input("Input Process num : ")
