@@ -1,4 +1,5 @@
 import pandas as pd
+import numpy as np
 
 class Average:
     def GetItemFromCSV(self,file1,file2):
@@ -14,19 +15,26 @@ class Average:
         #print(table)
         temptDict={'Lecture': '', 'Score': ''}
         n=len(score_table)
-        for i in range(0,4):
+        for i in range(0,n):
             temptDict['Lecture']=score_table[i:i+1][['Lectures']].to_string(index=False, header=0)
-            score=score_table[i:i+1][["Score"]].to_string(index=False, header=0)
-
-            temptDict['Score']= int(score)
+            score=float(score_table[i:i+1][["Score"]].to_string(index=False, header=0))
+            print((score))
+            temptDict['Score']= score
             print(  temptDict['Lecture'])
             print( temptDict['Score'])
             row_index=table.loc[table['Lectures']==temptDict['Lecture']].index[0]
-            column_index=table.columns.get_loc('Lectures')
+            column_index=table.columns.get_loc('Avg')
             print(row_index)
             print(column_index)
+            temptValue=float(table.iloc[row_index,column_index])
+
+
+
+            print('--------')
+            table.iloc[row_index,column_index]=score+temptValue
+            print(table.iloc[row_index,column_index])
             #table.replace({temptDict['Lecture']},temptDict['Score'])
-            print(table)
+        table.to_csv('src/output.csv')
 
 
 
