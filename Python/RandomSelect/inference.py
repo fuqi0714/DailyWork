@@ -101,10 +101,7 @@ class RandomID:
             with open(os.path.join(id, filename), 'a', encoding='utf-8-sig') as filename:
 
                 filename.write(f"{currentDate},{score}\n")
-            '''    new_record = pd.DataFrame({
-                    '点名时间': [currentDate],
-                    '得分': [score]
-                })
+
             new_record.to_csv(os.path.join(id, filename), mode='a', header=False, index=False, encoding='utf-8-sig')'''
             # file.to_csv(id, index=False, encoding='utf-8-sig')
             return
