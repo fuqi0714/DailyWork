@@ -68,6 +68,47 @@ class RandomID:
         ic(testDict)
         self.WriteBack(n, pandas_table, times,currentDate)
 
+    def WriteDetails(self, id, currentDate, score):
+        '''
+        根据传来的id值，先判断是否存在以这个学号id命名的csv文件，如果存在则直接打开向里面更新一条时间属性值。
+        如果不存在则先创建python语言自带的pandas表格数据类型（包含两列信息，点名时间和得分），然后将该类型结构的数据通过to_csv方法直接写入成以该学号id为名称的csv文件，
+        然后打开文件追加更新的时间属性值
+        '''
+        ic("Writing Details")
+        # if os.path.exists(id):
+        #     file = open(os.path.join(id,".csv"),'a')
+        #     file.write(currentDate,score)
+        #     file.write('\n')
+        #     file.close()
+        # else:
+        if os.path.exists(id):
+            filename = id + '.csv'
+            with open(os.path.join(id, filename), 'a', encoding='utf-8-sig') as filename:
+
+                filename.write(f"{currentDate},{score}\n")
+                '''
+                new_record = pd.DataFrame({
+                    '点名时间': [currentDate],
+                    '得分': [score]
+                })
+                '''
+
+            return
+        else:
+            os.makedirs(id)
+            file = pd.DataFrame(columns=['点名时间', '得分'])
+            filename = id + '.csv'
+            with open(os.path.join(id, filename), 'a', encoding='utf-8-sig') as filename:
+
+                filename.write(f"{currentDate},{score}\n")
+            '''    new_record = pd.DataFrame({
+                    '点名时间': [currentDate],
+                    '得分': [score]
+                })
+            new_record.to_csv(os.path.join(id, filename), mode='a', header=False, index=False, encoding='utf-8-sig')'''
+            # file.to_csv(id, index=False, encoding='utf-8-sig')
+            return
+
     def WriteBack(self, number, pandas_table, times,currentDate):
         ic("Starting Rewrite")
         pandas_table.loc[number, 'Times'] = times.to_string(index=False, header=0)
