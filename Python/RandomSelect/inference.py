@@ -69,7 +69,8 @@ class RandomID:
         ic("Generating Detail of Result")
         currentDate = self.GetCurrentDate()
         ic(testDict)
-        score = input("输入得分，回车键结束：")
+        score = random.randint(20, 50)
+        #score = input("输入得分，回车键结束：")
         # =======================================
         self.WriteBack(n, pandas_table, times, currentDate)
         self.WriteDetails(testDict['ID'], currentDate, score)
@@ -81,14 +82,20 @@ class RandomID:
         然后打开文件追加更新的时间属性值
         '''
         ic("Writing Details")
+        ic(os.getcwd())
+        tempdir=args.file.split("/")[-1]
+        dir=tempdir.split('.')[0]
+        target_path=os.path.join(os.getcwd()+os.path.sep+dir)
+        ic(target_path)
         # if os.path.exists(id):
         #     file = open(os.path.join(id,".csv"),'a')
         #     file.write(currentDate,score)
         #     file.write('\n')
         #     file.close()
         # else:
-        if os.path.exists(id):
-            filename = id + '.csv'
+        if os.path.exists(target_path):
+            ic('true')
+            filename = os.path.join(target_path+os.path.sep+id + '.csv')
             with open(os.path.join(id, filename), 'a', encoding='utf-8-sig') as filename:
 
                 filename.write(f"{currentDate},{score}\n")
@@ -101,10 +108,13 @@ class RandomID:
 
             return
         else:
-            os.makedirs(id)
+            #t_path=target_path+id+os.path.sep
+            ic('else')
+            #ic(t_path)
+            os.makedirs(target_path)
             file = pd.DataFrame(columns=['点名时间', '得分'])
-            filename = id + '.csv'
-            with open(os.path.join(id, filename), 'a', encoding='utf-8-sig') as filename:
+            filename = os.path.join(target_path+os.path.sep+id + '.csv')
+            with open(os.path.join(target_path+os.path.sep+id, filename), 'a', encoding='utf-8-sig') as filename:
 
                 filename.write(f"{currentDate},{score}\n")
             '''    new_record = pd.DataFrame({
