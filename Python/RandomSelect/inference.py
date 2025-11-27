@@ -63,10 +63,16 @@ class RandomID:
         testDict['Times'] = times.to_string(index=False, header=0)
 
         testDict['PreviousDate'] = pandas_table[n:n + 1][["PreviousDate"]].to_string(index=False, header=0)
+        ic("====")
+        ic(testDict['Times'])
+        testDict['PreviousDate'] = pandas_table[n:n + 1][["PreviousDate"]].to_string(index=False, header=0)
         ic("Generating Detail of Result")
-        currentDate=self.GetCurrentDate()
+        currentDate = self.GetCurrentDate()
         ic(testDict)
-        self.WriteBack(n, pandas_table, times,currentDate)
+        score = input("输入得分，回车键结束：")
+        # =======================================
+        self.WriteBack(n, pandas_table, times, currentDate)
+        self.WriteDetails(testDict['ID'], currentDate, score)
 
     def WriteDetails(self, id, currentDate, score):
         '''
@@ -101,7 +107,10 @@ class RandomID:
             with open(os.path.join(id, filename), 'a', encoding='utf-8-sig') as filename:
 
                 filename.write(f"{currentDate},{score}\n")
-
+            '''    new_record = pd.DataFrame({
+                    '点名时间': [currentDate],
+                    '得分': [score]
+                })
             new_record.to_csv(os.path.join(id, filename), mode='a', header=False, index=False, encoding='utf-8-sig')'''
             # file.to_csv(id, index=False, encoding='utf-8-sig')
             return
