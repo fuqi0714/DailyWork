@@ -69,8 +69,8 @@ class RandomID:
         ic("Generating Detail of Result")
         currentDate = self.GetCurrentDate()
         ic(testDict)
-        score = random.randint(20, 50)
-        #score = input("输入得分，回车键结束：")
+        #score = random.randint(20, 50)
+        score = input("输入得分，回车键结束：")
         # =======================================
         self.WriteBack(n, pandas_table, times, currentDate)
         self.WriteDetails(testDict['ID'], currentDate, score)
@@ -83,20 +83,21 @@ class RandomID:
         '''
         ic("Writing Details")
         ic(os.getcwd())
-        tempdir=args.file.split("/")[-1]
-        dir=tempdir.split('.')[0]
-        target_path=os.path.join(os.getcwd()+os.path.sep+dir)
-        ic(target_path)
+        dir='Details'
+        class_num,fille_type=os.path.splitext(os.path.basename(args.file))
+        current_path=os.path.join(os.getcwd()+os.path.sep+dir+os.path.sep+class_num)
+
+        ic(current_path)
         # if os.path.exists(id):
         #     file = open(os.path.join(id,".csv"),'a')
         #     file.write(currentDate,score)
         #     file.write('\n')
         #     file.close()
         # else:
-        if os.path.exists(target_path):
+        if os.path.exists(current_path):
             ic('true')
-            filename = os.path.join(target_path+os.path.sep+id + '.csv')
-            with open(os.path.join(id, filename), 'a', encoding='utf-8-sig') as filename:
+            filename = os.path.join(current_path+os.path.sep+id + '.csv')
+            with open(filename, 'a', encoding='utf-8-sig') as filename:
 
                 filename.write(f"{currentDate},{score}\n")
                 '''
@@ -106,15 +107,16 @@ class RandomID:
                 })
                 '''
 
-            return
+
         else:
             #t_path=target_path+id+os.path.sep
             ic('else')
+            ic(current_path)
             #ic(t_path)
-            os.makedirs(target_path)
-            file = pd.DataFrame(columns=['点名时间', '得分'])
-            filename = os.path.join(target_path+os.path.sep+id + '.csv')
-            with open(os.path.join(target_path+os.path.sep+id, filename), 'a', encoding='utf-8-sig') as filename:
+            os.makedirs(current_path)
+            #file = pd.DataFrame(columns=['点名时间', '得分'])
+            filename = os.path.join(current_path+os.path.sep+id + '.csv')
+            with open(filename, 'a', encoding='utf-8-sig') as filename:
 
                 filename.write(f"{currentDate},{score}\n")
             '''    new_record = pd.DataFrame({
@@ -123,7 +125,25 @@ class RandomID:
                 })
             new_record.to_csv(os.path.join(id, filename), mode='a', header=False, index=False, encoding='utf-8-sig')'''
             # file.to_csv(id, index=False, encoding='utf-8-sig')
-            return
+
+        target_path=os.path.join(os.path.dirname(args.file)+os.path.sep+dir+os.path.sep+class_num)
+        ic(filename)
+        #temp_filename=os.path.basename(filename)
+        #file=os.path.join(tarfile+os.path.sep+temp_filename)
+        date=pd.DataFrame([[currentDate,score]])
+        ic(target_path)
+        file=os.path.join(id+'.csv')
+        ic(date)
+        self.WriteBackUp(target_path,file,date)
+
+    def WriteBackUp(self,target_path,file,date):
+        if not os.path.exists(target_path):
+            ic("no,create it")
+            os.makedirs(target_path)
+
+        final_path=os.path.join(target_path,os.path.basename(file))
+        date.to_csv(final_path, mode='a',header=None, index=None)
+
 
     def WriteBack(self, number, pandas_table, times,currentDate):
         ic("Starting Rewrite")
