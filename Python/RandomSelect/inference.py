@@ -9,6 +9,8 @@ from datetime import datetime
 import module.GetItemFromCSV as GIFC
 import module.VisualizationModule as VLM
 import pandas as pd
+import time
+
 
 
 parser = argparse.ArgumentParser(description='Process some integers.')
@@ -70,17 +72,29 @@ class RandomID:
         currentDate = self.GetCurrentDate()
         ic(testDict)
         #score = random.randint(20, 50)
-        score = input("输入得分，回车键结束：")
+        #score = input("输入得分，回车键结束：")
         # =======================================
-        self.WriteBack(n, pandas_table, times, currentDate)
-        self.WriteDetails(testDict['ID'], currentDate, score)
 
-    def WriteDetails(self, id, currentDate, score):
+        # 添加计时功能
+        start_time = time.time()  # 记录开始时间
+        score = input("输入得分，回车键结束（计时已开始）：")
+        end_time = time.time()  # 记录结束时间
+        elapsed_time = end_time - start_time  # 计算用时
+        # 格式化显示时间（分钟:秒）
+        minutes = int(elapsed_time // 60)
+        seconds = int(elapsed_time % 60)
+        time_str = f"{minutes:02d}:{seconds:02d}"
+
+        self.WriteBack(n, pandas_table, times, currentDate)
+        self.WriteDetails(testDict['ID'], currentDate, score,time_str)
+
+    def WriteDetails(self, id, currentDate, score,time_str):
         '''
         根据传来的id值，先判断是否存在以这个学号id命名的csv文件，如果存在则直接打开向里面更新一条时间属性值。
         如果不存在则先创建python语言自带的pandas表格数据类型（包含两列信息，点名时间和得分），然后将该类型结构的数据通过to_csv方法直接写入成以该学号id为名称的csv文件，
         然后打开文件追加更新的时间属性值
         '''
+        #print(score)
         ic("Writing Details")
         ic(os.getcwd())
         dir='Details'
@@ -99,7 +113,7 @@ class RandomID:
             filename = os.path.join(current_path+os.path.sep+id + '.csv')
             with open(filename, 'a', encoding='utf-8-sig') as filename:
 
-                filename.write(f"{currentDate},{score}\n")
+                filename.write(f"{currentDate},{score},{time_str}\n")
                 '''
                 new_record = pd.DataFrame({
                     '点名时间': [currentDate],
@@ -118,7 +132,7 @@ class RandomID:
             filename = os.path.join(current_path+os.path.sep+id + '.csv')
             with open(filename, 'a', encoding='utf-8-sig') as filename:
 
-                filename.write(f"{currentDate},{score}\n")
+                filename.write(f"{currentDate},{score},{time_str}\n")
             '''    new_record = pd.DataFrame({
                     '点名时间': [currentDate],
                     '得分': [score]
@@ -130,7 +144,7 @@ class RandomID:
         ic(filename)
         #temp_filename=os.path.basename(filename)
         #file=os.path.join(tarfile+os.path.sep+temp_filename)
-        date=pd.DataFrame([[currentDate,score]])
+        date=pd.DataFrame([[currentDate,score,time_str]])
         ic(target_path)
         file=os.path.join(id+'.csv')
         ic(date)
