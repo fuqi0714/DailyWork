@@ -8,12 +8,23 @@ class VisualizationDate:
     plt.rcParams['font.sans-serif'] = ['SimHei']  # Show Chinese label
     plt.rcParams['axes.unicode_minus'] = False  # These two lines need to be set manually
 
-    NumsList=[]
-    NamesList=[]
+    NumsList = []
+    NamesList = []
+    '''
+    IdList=[]
+    ScoreList=[]
+    '''
     def GetDate(self, file):
-        pandas_table = GIFC.GetItemFromCSV(file)
+        type_list = ["Id", "Name", "Sex", "Times", "PreviousDate"]
+        pandas_table = GIFC.GetItemFromCSV(file, type_list)
+        print(pandas_table)
         self.NumsList = pandas_table["Times"].tolist()
         self.NamesList = pandas_table["Name"].tolist()
+        '''
+        self.NumsList = pandas_table["Id"].tolist()
+        self.NamesList = pandas_table["Score"].tolist()
+        
+        '''
         self.VisualizationResult()
 
     def GetMaxValue(self,list):

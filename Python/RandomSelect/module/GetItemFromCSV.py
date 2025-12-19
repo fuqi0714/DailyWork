@@ -4,6 +4,9 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 
-def GetItemFromCSV(file):
-    table = pd.read_csv(file, names=["ID", "Name", "Sex", "Times", "PreviousDate"])
+def GetItemFromCSV(file,type_list):
+
+    table = pd.read_csv(file, names=type_list)
     return pd.DataFrame(table)
+
+

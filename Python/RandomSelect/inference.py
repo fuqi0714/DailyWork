@@ -8,6 +8,7 @@ from datetime import datetime
 
 import module.GetItemFromCSV as GIFC
 import module.VisualizationModule as VLM
+import module.Details_option as DO
 import pandas as pd
 import time
 
@@ -19,6 +20,8 @@ parser.add_argument('--target_path', type=str,default="")
 parser.add_argument('--nums', type=int, default=3)
 parser.add_argument('--RandomSelect', action='store_true')
 parser.add_argument('--Visualization', action='store_true')
+parser.add_argument('--Details_option', action='store_true')
+
 args = parser.parse_args()
 
 
@@ -55,10 +58,11 @@ class RandomID:
     def ShowResult(self):
         ic("Starting RandomSelect")
         testDict = {'ID': '', 'Name': '', 'Times': '', 'PreviousDate': ''}
-        pandas_table = GIFC.GetItemFromCSV(args.file)
+        type_list = ["ID", "Name", "Sex", "Times", "PreviousDate"]
+        pandas_table = GIFC.GetItemFromCSV(args.file,type_list)
         ic("Converting CSV file complete")
         n = self.RandomNum(len(pandas_table))
-
+        #print(pandas_table)
         testDict['ID'] = pandas_table[n:n + 1][["ID"]].to_string(index=False, header=0)
         testDict['Name'] = pandas_table[n:n + 1][["Name"]].to_string(index=False, header=0)
         times = pandas_table[n:n + 1][["Times"]] + 1
@@ -77,7 +81,10 @@ class RandomID:
 
         # 添加计时功能
         start_time = time.time()  # 记录开始时间
-        score = input("输入得分，回车键结束（计时已开始）：")
+        score=100*random.random()
+        time.sleep(random.random())
+        ic(testDict)
+        #score = input("输入得分，回车键结束（计时已开始）：")
         end_time = time.time()  # 记录结束时间
         elapsed_time = end_time - start_time  # 计算用时
         # 格式化显示时间（分钟:秒）
@@ -214,8 +221,13 @@ if __name__ == '__main__':
         RID.Recursion(args.nums)
     elif args.Visualization:
         ic(" Visualization Becall")
+
         VLD=VLM.VisualizationDate()
         VLD.GetDate(args.file)
+    elif args.Details_option:
+        ic(" Details_option Becall")
+
+        DO=DO.Details_option()
+        DO.GetDate(args.file)
     else:
         ic("Select one of parser args")
-
